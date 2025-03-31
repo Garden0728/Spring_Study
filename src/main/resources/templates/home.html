@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Service</title>
+    <style>
+
+        body, h1, p {
+     margin: 0;
+     padding: 0;
+ }
+
+ body {
+     font-family: Arial, sans-serif;
+     background-color: #f4f7fc;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 100vh;
+ }
+
+ .container {
+     background-color: white;
+     padding: 40px;
+     border-radius: 10px;
+     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+     width: 320px;
+     text-align: center;
+     transition: transform 0.3s ease-in-out;
+ }
+
+ .container:hover {
+     transform: translateY(-10px); /* 마우스를 올렸을 때 컨테이너가 살짝 올라가도록 */
+ }
+
+ .container h1 {
+     margin-bottom: 20px;
+     font-size: 28px;
+     color: #333;
+ }
+
+ .container p {
+     font-size: 18px;
+     color: #555;
+     margin-bottom: 30px;
+ }
+
+ .container .links {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+ }
+
+ .container .links a.button {
+     display: inline-block;
+     padding: 12px 20px;
+     background-color: #4CAF50;
+     color: white;
+     text-align: center;
+     text-decoration: none;
+     font-size: 16px;
+     border-radius: 5px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+ }
+
+ .container .links a.button:hover {
+     background-color: #45a049;
+     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+ }
+
+ .container .links a.button:active {
+     background-color: #388e3c;
+ }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Welcome</h1>
+    <p>선택하라.</p>
+    <div class="links">
+        <a href="/members/new" class="button">회원 가입</a>
+        <a href="/Login" class="button">로그인</a>
+        <a href="/member_search" class="button">회원조회</a>
+    </div>
+</div>
+
+
+</body>
+</html>
