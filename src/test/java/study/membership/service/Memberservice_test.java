@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import study.membership.domain.Member;
 import study.membership.repository.MembeRepository;
-import study.membership.repository.springdataRepository;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Optional;
 
@@ -51,7 +51,7 @@ public class Memberservice_test {
         String saveId = memberservice.join(member);
 
 
-        Optional<Member> findMemberOptional = memberservice.findOne(saveId);
+        Optional<Member> findMemberOptional = membeRepository.findById(saveId);
 
         // 조회된 회원 정보 확인
         if (findMemberOptional.isPresent()) {
