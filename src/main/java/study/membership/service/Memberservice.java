@@ -2,11 +2,11 @@ package study.membership.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import study.membership.domain.Member;
-import study.membership.repository.MembeRepository;
+import study.membership.repository.MemberRepository;
+import study.membership.repository.SpringDataRepository;
 
 import java.util.Optional;
 
@@ -17,11 +17,11 @@ import java.util.Optional;
 public class Memberservice {
 
 
-    private final MembeRepository memberRepository;
+    private final MemberRepository memberRepository;
     private final BCryptPasswordEncoder encoder;
 
     @Autowired
-    public Memberservice(MembeRepository memberRepository, BCryptPasswordEncoder encoder) {
+    public Memberservice(MemberRepository memberRepository, BCryptPasswordEncoder encoder) {
         this.memberRepository = memberRepository;
         this.encoder = encoder;
     }
@@ -49,7 +49,7 @@ public class Memberservice {
     public Member findMem(String ID, String NAME) {
         Optional<Member> member = memberRepository.findMember(ID, NAME);
         if (member.isPresent()) {
-            // 값이 있을 때 처리
+
             Member findMEM = member.get();
 
             return findMEM;

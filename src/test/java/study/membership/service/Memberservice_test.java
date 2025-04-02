@@ -1,26 +1,18 @@
 package study.membership.service;
 
-import jakarta.transaction.Transactional;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import study.membership.domain.Member;
-import study.membership.repository.MembeRepository;
+import study.membership.repository.SpringDataRepository;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
+
 @SpringBootTest
 //@Transactional
 
@@ -31,7 +23,7 @@ public class Memberservice_test {
     private Memberservice memberservice;
 
     @Autowired
-    private MembeRepository membeRepository;
+    private SpringDataRepository memberRepository;
     @Autowired
     private  PasswordEncoder encoder;
 
@@ -51,7 +43,7 @@ public class Memberservice_test {
         String saveId = memberservice.join(member);
 
 
-        Optional<Member> findMemberOptional = membeRepository.findById(saveId);
+        Optional<Member> findMemberOptional = memberRepository.findById(saveId);
 
         // 조회된 회원 정보 확인
         if (findMemberOptional.isPresent()) {
@@ -67,7 +59,7 @@ public class Memberservice_test {
          String ID = "dksehrjs";
          String paswowrd = "skrr12";
 
-         Optional<Member> member_f = membeRepository.findById(ID);
+         Optional<Member> member_f = memberRepository.findById(ID);
          if(member_f.isPresent()){
              Member findmember = member_f.get();
               if(encoder.matches(paswowrd,findmember.getPassword())) {

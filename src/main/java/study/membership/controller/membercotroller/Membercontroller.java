@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import study.membership.domain.Member;
-import study.membership.repository.MembeRepository;
 import study.membership.service.Memberservice;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Controller
