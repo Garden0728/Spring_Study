@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import study.membership.domain.Member;
+import study.membership.repository.MemberRepository;
 import study.membership.repository.SpringDataRepository;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,7 +24,7 @@ public class Memberservice_test {
     private Memberservice memberservice;
 
     @Autowired
-    private SpringDataRepository memberRepository;
+    private MemberRepository memberRepository;
     @Autowired
     private  PasswordEncoder encoder;
 
