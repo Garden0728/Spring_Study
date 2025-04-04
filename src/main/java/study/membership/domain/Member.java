@@ -14,6 +14,17 @@ public class Member {
     private String name;
     private String password;
 
+    private boolean role;
+    public boolean isRole() {
+        return role;
+    }
+
+    public void setRole(boolean role) {
+        this.role = role;
+    }
+
+
+
     public String getPassword() {
         return password;
     }
@@ -37,4 +48,5 @@ public class Member {
     public void setName(String name) {
         this.name = name;
     }
+
 }

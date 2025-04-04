@@ -15,32 +15,15 @@ public class MemberserviceImpl extends AbstractMemberService implements Memberse
 
     private final BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
     public MemberserviceImpl(MemberRepository memberRepository, BCryptPasswordEncoder passwordEncoder) {
         super(memberRepository);
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Override
-    public Member findMem(String ID, String NAME) {
-        Optional<Member> member = memberRepository.findMember(ID, NAME);
-        if (member.isPresent()) {
-
-            Member findMEM = member.get();
-
-            return findMEM;
-        } else {
-            throw new IllegalStateException("회원정보를 찾을 수 없습니다.");
-        }
 
 
-    }
 
-    @Override
-    public void DropMEM(Member member) {
-
-        memberRepository.delete(member);
-
-    }
 
     @Transactional
     @Override
@@ -68,6 +51,9 @@ public class MemberserviceImpl extends AbstractMemberService implements Memberse
         return Optional.ofNullable(memberRepository.findById(memberID)
                 .filter(member -> passwordEncoder.matches(password, member.getPassword()))
                 .orElseThrow(() -> new IllegalStateException("입력하신 아이디 혹은 비밀번호를 확인하세요!.")));
+    }
+    public boolean isAdmin(Member member) {
+        return member.isRole();
     }
 
 }
