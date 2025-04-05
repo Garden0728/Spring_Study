@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import study.membership.controller.membercotroller.dto.LoginrequestDto;
+import study.membership.controller.membercotroller.dto.SignupRequestDto;
 import study.membership.domain.Member;
 import study.membership.service.Memberservice;
 
@@ -31,12 +33,13 @@ public class Membercontroller {
     }
 
     @PostMapping("/members/new")
-    public String create(@ModelAttribute MemberForm form, Model model) {
+  //  public String create(@ModelAttribute MemberForm form, Model model) {
+    public String create(SignupRequestDto dto, Model model) {
         try {
             Member member = new Member();
-            member.setId(form.getID());
-            member.setPassword(form.getPassword());
-            member.setName(form.getName());
+            member.setId(dto.getID());
+            member.setPassword(dto.getPassword());
+            member.setName(dto.getName());
             memberservice.join(member);
             return "redirect:/";
         } catch (IllegalStateException e) {
@@ -52,10 +55,11 @@ public class Membercontroller {
     }
 
     @PostMapping("/Login")
-    public String login(@RequestParam("ID") String ID, @RequestParam("PASS") String password, Model model) {
+    //public String login(@RequestParam("ID") String ID, @RequestParam("PASS") String password, Model model)
+    public String login(LoginrequestDto dto, Model model) {
         try {
 
-            Optional<Member> member = memberservice.Login(ID, password);
+            Optional<Member> member = memberservice.Login(dto.getID(), dto.getPassword());
             if(member.isPresent() && memberservice.isAdmin(member.get())){
                 return "managnerhtml/managerHome";
             }

@@ -1,6 +1,6 @@
 package study.membership.controller.membercotroller;
 
-public class MemberForm {
+/*public class MemberForm {
     private String name;
     private String ID;
 
@@ -35,4 +35,4 @@ public class MemberForm {
 
 
 
-}
+}*/

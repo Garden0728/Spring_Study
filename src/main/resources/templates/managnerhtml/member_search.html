@@ -85,7 +85,7 @@
     <form action="/member_search" method="post">
 
         <input type="text" name="ID" placeholder="아이디 입력" required>
-        <input type="text" name="NAME" placeholder="이름 입력" required>
+        <input type="text" name="name" placeholder="이름 입력" required>
 
         <button type="submit">검색</button>
     </form>
@@ -94,8 +94,8 @@
          <form action="/DROP" method="post">
              <div class="form-group">
                 <p>이 름: <span th:text="${member.name}"></span></p>
-                <p>아이디: <span th:text="${member.id}"></span></p>
-                 <input type="hidden" name="ID" th:value="${member.id}">
+                <p>아이디: <span th:text="${member.ID}"></span></p>
+                 <input type="hidden" name="ID" th:value="${member.ID}">
                 <input type="hidden" name="name" th:value="${member.name}">
                 <button type="submit">삭제</button>
              </div>
