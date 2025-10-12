@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import study.membership.controller.membercotroller.dto.LoginrequestDto;
 import study.membership.controller.membercotroller.dto.SignupRequestDto;
@@ -15,6 +16,7 @@ import study.membership.domain.Member;
 import study.membership.service.Memberservice;
 
 
+import java.io.IOException;
 import java.util.Optional;
 
 @Controller
@@ -36,15 +38,19 @@ public class Membercontroller {
   //  public String create(@ModelAttribute MemberForm form, Model model) {
     public String create(SignupRequestDto dto, Model model) {
         try {
-            Member member = new Member();
+            /*Member member = new Member();
             member.setId(dto.getID());
             member.setPassword(dto.getPassword());
-            member.setName(dto.getName());
-            memberservice.join(member);
-            return "redirect:/";
+            member.setName(dto.getName());*/
+            //MultipartFile image = dto.getImagePath();
+            String url = memberservice.join(dto);
+            model.addAttribute("url", url);
+            return "memberhtml/memberImageTest";
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", "이미 존재하는 아이디입니다.");
             return "memberhtml/createForm";
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
     }
